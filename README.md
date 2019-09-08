@@ -50,6 +50,7 @@ Fail add fruit:
 - Bean Validation
 - JPA
 - PostgreSQL
+- Docker
 
 ###Tests
 - Quarkus tests
