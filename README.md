@@ -7,6 +7,8 @@ Quarkus in production demo application.
 - Docker 18.06.3-ce+
 - Maven 3.6+
 
+## Use it
+
 #### Build
 ```shell script
 mvn clean install
