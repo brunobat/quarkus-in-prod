@@ -38,3 +38,21 @@ Fail add fruit:
 ```shell script
  curl -v -XPOST http://localhost:8080/fruits -H 'Content-Type: application/json' -d '{"description":"Tropical fruit","name":""}'
 ```
+
+##Used Technologies
+
+### Runtime
+- CDI
+- Post and Get endpoints with Jax-RS
+- MP OpenApi
+- MP Config
+- MP HealthCheck
+- Bean Validation
+- JPA
+- PostgreSQL
+
+###Tests
+- Quarkus tests
+- JUnit 5
+- Restasured
+- H2
