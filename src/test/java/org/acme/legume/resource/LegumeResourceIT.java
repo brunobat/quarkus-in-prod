@@ -1,4 +1,4 @@
-package org.acme.rest.json;
+package org.acme.legume.resource;
 
 import io.quarkus.test.junit.SubstrateTest;
 

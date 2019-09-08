@@ -1,4 +1,4 @@
-package org.acme.rest.json;
+package org.acme.legume.resource;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -11,17 +11,17 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 public class LegumeResourceTest {
 
     @Test
-    public void testList() {
+    public void testProvisionAndList() {
         given()
                 .header("Content-Type", "application/json; encoding=utf8; charset=utf8")
-//                .body(Entity.json(null))
-                .when().post("/legumes")
+                .when().post("/legumes/init")
                 .then()
                 .statusCode(201);
 
         given()
                 .when().get("/legumes")
                 .then()
+                .log().all()
                 .statusCode(200)
                 .body("$.size()", is(2),
                         "name", containsInAnyOrder("Carrot", "Zucchini"),
