@@ -39,7 +39,7 @@ Fail add fruit:
  curl -v -XPOST http://localhost:8080/fruits -H 'Content-Type: application/json' -d '{"description":"Tropical fruit","name":""}'
 ```
 
-##Used Technologies
+## Used Technologies
 
 ### Runtime
 - CDI
@@ -52,7 +52,7 @@ Fail add fruit:
 - PostgreSQL
 - Docker
 
-###Tests
+### Tests
 - Quarkus tests
 - JUnit 5
 - Restasured
