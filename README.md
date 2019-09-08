@@ -1,6 +1,12 @@
 # quarkus-in-prod
 Quarkus in production demo application.
 
+## Requirements
+
+- JDK 11+
+- Docker 18.06.3-ce+
+- Maven 3.6+
+
 #### Build
 ```shell script
 mvn clean install
