@@ -4,6 +4,7 @@ Quarkus in production demo application.
 ## Requirements
 
 - JDK 11+
+- GraalVM 19+
 - Docker 18.06.3-ce+
 - Maven 3.6+
 
@@ -14,6 +15,9 @@ Quarkus in production demo application.
 mvn clean install
 ```
 Build native image
+
+Add an environment variable to the GraalVM path: `export GRAALVM_HOME="<path to it>"
+`
 ```shell script
 mvn clean package -Pnative
 ```
@@ -47,12 +51,13 @@ Fail add fruit:
  curl -v -XPOST http://localhost:8080/fruits -H 'Content-Type: application/json' -d '{"description":"Tropical fruit","name":""}'
 ```
 
-## Used Technologies
+## Relevant Used Technologies
 
 ### Runtime
 - CDI
 - Post and Get endpoints with Jax-RS
 - MP OpenApi
+- Swagger UI
 - MP Config
 - MP HealthCheck
 - Bean Validation

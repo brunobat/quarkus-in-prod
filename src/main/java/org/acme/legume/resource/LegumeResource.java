@@ -5,7 +5,6 @@ import org.acme.legume.data.LegumeNew;
 import org.acme.legume.model.Legume;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Timeout;
-import org.modelmapper.ModelMapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -28,9 +27,6 @@ public class LegumeResource implements LegumeApi {
     @Inject
     EntityManager manager;
 
-    @Inject
-    ModelMapper mapper;
-
     @Transactional
     public Response provision() {
         final Legume carrot = Legume.builder()
@@ -48,7 +44,10 @@ public class LegumeResource implements LegumeApi {
 
     @Transactional
     public Response add(@Valid final LegumeNew legumeNew) {
-        final Legume legume = mapper.map(legumeNew, Legume.class);
+        final Legume legume = Legume.builder()
+                .name(legumeNew.getName())
+                .description((legumeNew.getDescription()))
+                .build();
         final Legume addedLegume = manager.merge(legume);
         return Response.status(CREATED).entity(addedLegume).build();
     }
