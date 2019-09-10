@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    image: tdx/quarkus-in-prod
+    container_name: app
+    restart: on-failure
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    environment:
+      - DB_HOST=database
+      - DB_DATABASE=test
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=pass
+
+  database:
+    image: postgres:11.5
+    container_name: database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - ALLOW_IP_RANGE='0.0.0.0/0'
+      - POSTGRES_DB=test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
