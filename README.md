@@ -5,8 +5,11 @@ Quarkus in production demo application.
 
 - JDK 11+
 - GraalVM 19+
-- Docker 18.06.3-ce+
 - Maven 3.6+
+- Docker 18.06.3-ce+
+- Docker-compose
+- Minikube. This allows you to run a kubernetes cluster locally. See: https://kubernetes.io/docs/setup/learning-environment/minikube/
+
 
 ## Use it
 

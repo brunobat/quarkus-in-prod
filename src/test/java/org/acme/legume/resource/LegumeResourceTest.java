@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 public class LegumeResourceTest {
 
     @Test
-    public void testProvisionAndList() {
+    public void  testProvisionAndList() {
         given()
                 .header("Content-Type", "application/json; encoding=utf8; charset=utf8")
                 .when().post("/legumes/init")

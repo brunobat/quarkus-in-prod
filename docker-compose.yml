@@ -1,0 +1,54 @@
+version: '3.3'
+
+services:
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/portainer_password:/tmp/portainer_password
+    ports:
+      - 9000:9000
+      - 8000:8000
+    command: --admin-password='$$2y$$05$$U6g.5sn3AAJRShJD2Yahh.QW.K9B2YdSj4.SuGZRlpo14W1My08E2'
+    # username:admin password: portainer
+
+  rabbitmq:
+    image: rabbitmq:latest
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  database:
+    image: postgres:latest
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - ALLOW_IP_RANGE='0.0.0.0/0'
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+    ports:
+      - 5432:5432
+
+  quarkus-in-prod:
+    image: quarkus-in-prod:latest
+    build:
+      context: .
+#      context: src/main/docker/
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - 8079:8080
+      - 5005:5005
+    environment:
+      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+      - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
+
+volumes:
+  db-data:
+    driver: local
