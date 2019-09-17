@@ -11,13 +11,12 @@
 
 package org.acme.legume.resource.camel;
 
-import org.acme.camel.CamelRoutesSetup;
+import org.acme.legume.camel.CamelRoutesSetup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Priority;
 import javax.enterprise.inject.Alternative;
-import javax.enterprise.inject.Specializes;
 import javax.inject.Singleton;
 
 @Alternative

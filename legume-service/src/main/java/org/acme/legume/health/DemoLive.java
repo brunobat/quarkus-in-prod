@@ -1,4 +1,4 @@
-package org.acme.health;
+package org.acme.legume.health;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.health.HealthCheck;

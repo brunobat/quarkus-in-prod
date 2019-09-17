@@ -9,7 +9,7 @@
  * is strictly prohibited.
  */
 
-package org.acme.camel;
+package org.acme.legume.camel;
 
 import io.quarkus.runtime.StartupEvent;
 import org.slf4j.Logger;

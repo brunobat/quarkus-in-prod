@@ -48,6 +48,20 @@ services:
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
       - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
 
+  hero-service:
+    image: legume-service:latest
+    build:
+      context: hero-service/
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - 8079:8080
+      - 5005:5005
+    environment:
+      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+      - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
+
 volumes:
   db-data:
     driver: local
