@@ -41,6 +41,6 @@ public class Hero {
     @NotEmpty
     private String name;
 
-    private String description;
+    private CapeType capeType;
 }
 
