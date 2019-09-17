@@ -56,8 +56,8 @@ services:
       - database
       - rabbitmq
     ports:
-      - 8079:8080
-      - 5005:5005
+      - 8078:8080
+      - 5006:5005
     environment:
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
       - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
