@@ -34,11 +34,10 @@ services:
     ports:
       - 5432:5432
 
-  quarkus-in-prod:
-    image: quarkus-in-prod:latest
+  legume-service:
+    image: legume-service:latest
     build:
-      context: .
-#      context: src/main/docker/
+      context: legume-service/
     depends_on:
       - database
       - rabbitmq

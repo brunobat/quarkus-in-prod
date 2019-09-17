@@ -6,7 +6,12 @@
 
     <groupId>com.brunobat</groupId>
     <artifactId>quarkus-in-prod</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>legume-service</module>
+        <module>hero-service</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
