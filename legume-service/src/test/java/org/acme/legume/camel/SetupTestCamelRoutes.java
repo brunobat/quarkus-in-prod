@@ -9,9 +9,8 @@
  * is strictly prohibited.
  */
 
-package org.acme.legume.resource.camel;
+package org.acme.legume.camel;
 
-import org.acme.legume.camel.CamelRoutesSetup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

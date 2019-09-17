@@ -3,7 +3,7 @@
  */
 
 
-package org.acme.legume.resource.database;
+package org.acme.legume.database;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 import org.h2.tools.Server;

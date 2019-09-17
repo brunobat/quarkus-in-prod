@@ -47,6 +47,22 @@ public class CamelRoutesSetup {
     private String password;
 
     public void setup() throws Exception {
+        messageSender();
+    }
+
+    public void start() throws Exception {
+        final AbstractCamelContext context = getCamelContex();
+        log.info("Starting camel routes");
+        for (RouteDefinition routeDefinition : context.getExtension(Model.class).getRouteDefinitions()) {
+            context.startRoute(routeDefinition.getId());
+        }
+    }
+
+    protected boolean autoStartRoutes() {
+        return true;
+    }
+
+    private void messageSender() throws Exception {
         final RouteBuilder routeBuilder = new RouteBuilder(getCamelContex()) {
             @Override
             public void configure() throws Exception {
@@ -68,18 +84,6 @@ public class CamelRoutesSetup {
             }
         };
         camelContext.addRoutes(routeBuilder);
-    }
-
-    protected boolean autoStartRoutes() {
-        return true;
-    }
-
-    public void start() throws Exception {
-        final AbstractCamelContext context = getCamelContex();
-        log.info("Starting camel routes");
-        for (RouteDefinition routeDefinition : context.getExtension(Model.class).getRouteDefinitions()) {
-            context.startRoute(routeDefinition.getId());
-        }
     }
 
     private AbstractCamelContext getCamelContex() {
