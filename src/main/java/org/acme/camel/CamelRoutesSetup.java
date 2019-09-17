@@ -11,7 +11,6 @@
 
 package org.acme.camel;
 
-import io.quarkus.runtime.StartupEvent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.engine.AbstractCamelContext;
@@ -22,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 @ApplicationScoped
@@ -48,13 +46,7 @@ public class CamelRoutesSetup {
     @ConfigProperty(name = "org.acme.camel.setup.rabbitmq.password")
     private String password;
 
-    public void onStartup(@Observes final StartupEvent ev) throws Exception {
-        log.info("Initializing camel routes.");
-        setup();
-        start();
-    }
-
-    private void setup() throws Exception {
+    public void setup() throws Exception {
         final RouteBuilder routeBuilder = new RouteBuilder(getCamelContex()) {
             @Override
             public void configure() throws Exception {
@@ -82,7 +74,7 @@ public class CamelRoutesSetup {
         return true;
     }
 
-    private void start() throws Exception {
+    public void start() throws Exception {
         final AbstractCamelContext context = getCamelContex();
         log.info("Starting camel routes");
         for (RouteDefinition routeDefinition : context.getExtension(Model.class).getRouteDefinitions()) {
