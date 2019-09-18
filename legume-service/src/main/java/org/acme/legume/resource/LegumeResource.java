@@ -1,5 +1,6 @@
 package org.acme.legume.resource;
 
+import org.acme.legume.camel.MessageSender;
 import org.acme.legume.data.LegumeItem;
 import org.acme.legume.data.LegumeNew;
 import org.acme.legume.model.Legume;
@@ -27,28 +28,41 @@ public class LegumeResource implements LegumeApi {
     @Inject
     EntityManager manager;
 
+    @Inject
+    MessageSender messageSender;
+
     @Transactional
     public Response provision() {
-        final Legume carrot = Legume.builder()
+        final LegumeNew carrot = LegumeNew.builder()
                 .name("Carrot")
                 .description("Root vegetable, usually orange")
                 .build();
-        final Legume zucchini = Legume.builder()
+        final LegumeNew zucchini = LegumeNew.builder()
                 .name("Zucchini")
                 .description("Summer squash")
                 .build();
         return Response.status(CREATED).entity(asList(
-                manager.merge(carrot),
-                manager.merge(zucchini))).build();
+                add(carrot),
+                add(zucchini))).build();
     }
 
     @Transactional
     public Response add(@Valid final LegumeNew legumeNew) {
-        final Legume legume = Legume.builder()
+        final Legume legumeToAdd = Legume.builder()
                 .name(legumeNew.getName())
                 .description((legumeNew.getDescription()))
                 .build();
-        final Legume addedLegume = manager.merge(legume);
+
+        final Legume addedLegume = manager.merge(legumeToAdd);
+
+        final LegumeItem legumeItem = LegumeItem.builder()
+                .id(addedLegume.getId())
+                .name(addedLegume.getName())
+                .description(addedLegume.getDescription())
+                .build();
+
+        messageSender.send(legumeItem);
+
         return Response.status(CREATED).entity(addedLegume).build();
     }
 

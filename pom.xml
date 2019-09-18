@@ -21,7 +21,6 @@
         <camel-quarkus.version>0.1.0</camel-quarkus.version>
         <camel.version>3.0.0-M4</camel.version>
         <lombok.version>1.18.10</lombok.version>
-        <modelmapper.version>2.3.5</modelmapper.version>
 
         <rest-assured.version>3.3.0</rest-assured.version>
         <surefire.version>2.22.2</surefire.version>
