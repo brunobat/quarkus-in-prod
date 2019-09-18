@@ -13,14 +13,19 @@ services:
     # username:admin password: portainer
 
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq-docker:latest
+    build:
+      context: rabbitmq
     restart: always
-    environment:
-      - RABBITMQ_DEFAULT_USER=rabbitmq
-      - RABBITMQ_DEFAULT_PASS=rabbitmq
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=rabbitmq
+#      - RABBITMQ_DEFAULT_PASS=rabbitmq
+#      - RABBITMQ_DEFAULT_VHOST=/
     ports:
       - 5672:5672
       - 15672:15672
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
 
   database:
     image: postgres:latest
@@ -39,8 +44,9 @@ services:
     build:
       context: legume-service/
     depends_on:
-      - database
       - rabbitmq
+      - database
+      - portainer
     ports:
       - 8079:8080
       - 5005:5005
@@ -53,8 +59,9 @@ services:
     build:
       context: hero-service/
     depends_on:
-      - database
       - rabbitmq
+      - database
+      - portainer
     ports:
       - 8078:8080
       - 5006:5005

@@ -12,9 +12,9 @@ import javax.inject.Singleton;
 @Alternative
 @Priority(1)
 @Singleton
-public class SetupTestCamelRoutes extends CamelRoutesSetup {
+public class SetupTestCamelRoutesStub extends CamelRoutesSetup {
 
-    private static final Logger log = LoggerFactory.getLogger(SetupTestCamelRoutes.class);
+    private static final Logger log = LoggerFactory.getLogger(SetupTestCamelRoutesStub.class);
 
     @Override
     protected boolean autoStartRoutes() {

@@ -1,6 +1,6 @@
 
 
-package org.acme.legume.camel;
+package org.acme.hero.camel;
 
 import io.quarkus.runtime.StartupEvent;
 import org.slf4j.Logger;
@@ -11,9 +11,9 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class CamelInit {
+public class AppInit {
 
-    private static final Logger log = LoggerFactory.getLogger(CamelInit.class);
+    private static final Logger log = LoggerFactory.getLogger(AppInit.class);
 
     @Inject
     private CamelRoutesSetup routesSetup;

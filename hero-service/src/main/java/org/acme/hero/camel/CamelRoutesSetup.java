@@ -1,8 +1,10 @@
 
 
-package org.acme.legume.camel;
+package org.acme.hero.camel;
 
+import org.acme.hero.data.LegumeItem;
 import org.apache.camel.CamelContext;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.engine.AbstractCamelContext;
 import org.apache.camel.model.Model;
@@ -38,7 +40,7 @@ public class CamelRoutesSetup {
     private String password;
 
     public void setup() throws Exception {
-        messageSender();
+        messageConsumer();
     }
 
     public void start() throws Exception {
@@ -53,34 +55,33 @@ public class CamelRoutesSetup {
         return true;
     }
 
-    private void messageSender() throws Exception {
+    private void messageConsumer() throws Exception {
         final RouteBuilder routeBuilder = new RouteBuilder(getCamelContex()) {
             @Override
             public void configure() throws Exception {
-                configMessageProducer();
+                consumeMessages();
             }
 
-            private void configMessageProducer() {
-                final String toUri = "rabbitmq:" + "demo" +
+            private void consumeMessages() throws Exception {
+                final String fromUri = "rabbitmq:" + "foo" +
 //                        "?autoDelete=" + "false" +
 //                        "&declare=false" +
                         "&addresses=" + host + ":" + port +
-                        "&username=" + "rabbitmq" +
-                        "&password=" + "rabbitmq" +
-                        "&vhost=" + "demo" +
-                        "&routingKey=" + "demo";
-//                        "&queue=" + "demo";
+//                        "&username=" + username +
+//                        "&password=" + password +
+//                        "&vhost=" + rabbitMqVhost + + "&queue=" + properties.getBeginForecastQueueName();
+                        "&queue=" + "demo";
 
-                log.info("adding route: {}", toUri);
-
-                from("direct:rabbitMQ")
-                        .routeId("MessageProducer")
-                        .log("send message")
-                        .to(toUri)
+                from(fromUri)
+                        .routeId("BeginForecastConsumer")
+//                        .log(LoggingLevel.INFO, log, "Consumer: " + properties.getBeginForecastQueueName())
+                        .log(LoggingLevel.INFO, log, "New message arrived")
+                        .unmarshal()
+                        .json(LegumeItem.class, LegumeItem.class)
+                        .process("superHeroCreator")
                         .autoStartup(autoStartRoutes());
             }
         };
-        camelContext.addRoutes(routeBuilder);
     }
 
     private AbstractCamelContext getCamelContex() {

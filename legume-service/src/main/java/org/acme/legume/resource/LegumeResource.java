@@ -42,28 +42,13 @@ public class LegumeResource implements LegumeApi {
                 .description("Summer squash")
                 .build();
         return Response.status(CREATED).entity(asList(
-                add(carrot),
-                add(zucchini))).build();
+                addLegume(carrot),
+                addLegume(zucchini))).build();
     }
 
     @Transactional
     public Response add(@Valid final LegumeNew legumeNew) {
-        final Legume legumeToAdd = Legume.builder()
-                .name(legumeNew.getName())
-                .description((legumeNew.getDescription()))
-                .build();
-
-        final Legume addedLegume = manager.merge(legumeToAdd);
-
-        final LegumeItem legumeItem = LegumeItem.builder()
-                .id(addedLegume.getId())
-                .name(addedLegume.getName())
-                .description(addedLegume.getDescription())
-                .build();
-
-        messageSender.send(legumeItem);
-
-        return Response.status(CREATED).entity(addedLegume).build();
+        return Response.status(CREATED).entity(addLegume(legumeNew)).build();
     }
 
     @Transactional
@@ -96,5 +81,23 @@ public class LegumeResource implements LegumeApi {
 
     private Optional<Legume> find(final String legumeId) {
         return Optional.ofNullable(manager.find(Legume.class, legumeId));
+    }
+
+    private LegumeItem addLegume(final @Valid LegumeNew legumeNew) {
+        final Legume legumeToAdd = Legume.builder()
+                .name(legumeNew.getName())
+                .description((legumeNew.getDescription()))
+                .build();
+
+        final Legume addedLegume = manager.merge(legumeToAdd);
+
+        final LegumeItem legumeItem = LegumeItem.builder()
+                .id(addedLegume.getId())
+                .name(addedLegume.getName())
+                .description(addedLegume.getDescription())
+                .build();
+
+        messageSender.send(legumeItem);
+        return legumeItem;
     }
 }
