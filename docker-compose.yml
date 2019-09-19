@@ -14,8 +14,8 @@ services:
 
   rabbitmq:
     image: rabbitmq-docker:latest
-    build:
-      context: rabbitmq
+#    build:
+#      context: rabbitmq
     restart: always
 #    environment:
 #      - RABBITMQ_DEFAULT_USER=rabbitmq
