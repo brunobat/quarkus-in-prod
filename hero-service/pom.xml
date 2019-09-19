@@ -9,8 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.brunobat</groupId>
     <artifactId>hero-service</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
+                <version>${quarkus.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

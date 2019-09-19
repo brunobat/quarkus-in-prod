@@ -62,14 +62,14 @@ public class CamelRoutesSetup {
 
             private void configMessageProducer() {
                 final String toUri = "rabbitmq:" + "demo" +
-//                        "?autoDelete=" + "false" +
-//                        "&declare=false" +
+                        "?autoDelete=" + "false" +
+                        "&declare=false" +
                         "&addresses=" + host + ":" + port +
                         "&username=" + "rabbitmq" +
                         "&password=" + "rabbitmq" +
-                        "&vhost=" + "demo" +
-                        "&routingKey=" + "demo";
-//                        "&queue=" + "demo";
+                        "&vhost=" + "/demo" +
+                        "&routingKey=" + "demo" +
+                        "&queue=" + "demo";
 
                 log.info("adding route: {}", toUri);
 
@@ -77,7 +77,7 @@ public class CamelRoutesSetup {
                         .routeId("MessageProducer")
                         .log("send message")
                         .to(toUri)
-                        .autoStartup(autoStartRoutes());
+                        .autoStartup(false);
             }
         };
         camelContext.addRoutes(routeBuilder);

@@ -25,7 +25,7 @@ services:
       - 5672:5672
       - 15672:15672
     volumes:
-      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
+      - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
 
   database:
     image: postgres:latest

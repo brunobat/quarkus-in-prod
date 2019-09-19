@@ -9,8 +9,31 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.brunobat</groupId>
     <artifactId>legume-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.brunobat</groupId>
+            <artifactId>camel-support</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
+                <version>${quarkus.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
