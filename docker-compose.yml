@@ -55,7 +55,7 @@ services:
       - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
 
   hero-service:
-    image: legume-service:latest
+    image: hero-service:latest
     build:
       context: hero-service/
     depends_on:
