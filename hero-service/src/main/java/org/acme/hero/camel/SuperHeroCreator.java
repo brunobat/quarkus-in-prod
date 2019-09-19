@@ -25,10 +25,13 @@ public class SuperHeroCreator implements Processor {
     private EntityManager entityManager;
 
     @Override
-    @Transactional(REQUIRED)
     public void process(final Exchange exchange) throws Exception {
         final String legumeItem = exchange.getMessage().getBody(String.class);
+        add(legumeItem);
+    }
 
+    @Transactional(REQUIRED)
+    Hero add(final String legumeItem) {
         log.info("Legume received: {}", legumeItem);
 
         final Hero hero = Hero.builder()
@@ -36,6 +39,8 @@ public class SuperHeroCreator implements Processor {
                 .capeType(CapeType.SUPERMAN)
                 .build();
 
-        log.info("hero created: {}", entityManager.merge(hero));
+        final Hero createdHero = entityManager.merge(hero);
+        log.info("hero created: {}", createdHero);
+        return createdHero;
     }
 }
