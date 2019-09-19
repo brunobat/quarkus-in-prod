@@ -1,6 +1,5 @@
 package org.acme.hero.camel;
 
-import org.acme.hero.data.LegumeItem;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.slf4j.Logger;
@@ -17,8 +16,9 @@ public class SuperHeroCreator implements Processor {
 
     @Override
     public void process(final Exchange exchange) throws Exception {
-        final LegumeItem legumeItem = exchange.getMessage().getBody(LegumeItem.class);
+        final String legumeItem = exchange.getMessage().getBody(String.class);
         log.info("Legume received: {}", legumeItem);
+
 
     }
 }

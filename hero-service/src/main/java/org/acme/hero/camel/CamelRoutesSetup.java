@@ -63,25 +63,25 @@ public class CamelRoutesSetup {
             }
 
             private void consumeMessages() throws Exception {
-                final String fromUri = "rabbitmq:" + "foo" +
-//                        "?autoDelete=" + "false" +
-//                        "&declare=false" +
-                        "&addresses=" + host + ":" + port +
-//                        "&username=" + username +
-//                        "&password=" + password +
-//                        "&vhost=" + rabbitMqVhost + + "&queue=" + properties.getBeginForecastQueueName();
-                        "&queue=" + "demo";
+                final String fromUri =
+                    "rabbitmq:" + "demo" +
+                    "?autoDelete=" + "false" +
+                    "&declare=false" +
+                    "&addresses=" + host + ":" + port +
+                    "&username=" + "rabbitmq" +
+                    "&password=" + "rabbitmq" +
+                    "&vhost=" + "/demo" +
+                    "&queue=" + "demoQueue";
 
                 from(fromUri)
-                        .routeId("BeginForecastConsumer")
-//                        .log(LoggingLevel.INFO, log, "Consumer: " + properties.getBeginForecastQueueName())
+                        .routeId("Consume")
                         .log(LoggingLevel.INFO, log, "New message arrived")
-                        .unmarshal()
-                        .json(LegumeItem.class, LegumeItem.class)
                         .process("superHeroCreator")
                         .autoStartup(autoStartRoutes());
             }
         };
+
+        camelContext.addRoutes(routeBuilder);
     }
 
     private AbstractCamelContext getCamelContex() {
