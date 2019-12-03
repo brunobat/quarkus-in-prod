@@ -1,6 +1,5 @@
 package org.acme.legume.model;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
-@RegisterForReflection
 @Entity
 @Data
 @NoArgsConstructor
