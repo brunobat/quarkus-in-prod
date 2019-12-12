@@ -13,19 +13,14 @@ services:
     # username:admin password: portainer
 
   rabbitmq:
-    image: rabbitmq-docker:latest
-    build:
-      context: rabbitmq
+    image: rabbitmq:3.7.15-management-alpine
     restart: always
-#    environment:
-#      - RABBITMQ_DEFAULT_USER=rabbitmq
-#      - RABBITMQ_DEFAULT_PASS=rabbitmq
-#      - RABBITMQ_DEFAULT_VHOST=/
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
       - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
 
   database:
     image: postgres:latest
@@ -48,8 +43,7 @@ services:
       - database
       - portainer
     ports:
-      - 8079:8080
-      - 5005:5005
+      - 8080:8080
     environment:
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
       - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
@@ -63,8 +57,7 @@ services:
       - database
       - portainer
     ports:
-      - 8078:8080
-      - 5006:5005
+      - 8081:8080
     environment:
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
       - ORG_ACME_CAMEL_SETUP_RABBITMQ_HOST=rabbitmq
