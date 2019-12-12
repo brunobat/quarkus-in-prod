@@ -8,12 +8,6 @@
     <artifactId>quarkus-in-prod</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>camel-support</module>
-        <module>legume-service</module>
-        <module>hero-service</module>
-        <module>r-service</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -155,6 +149,28 @@
         </plugins>
     </build>
     <profiles>
+        <profile>
+            <id>services</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>camel-support</module>
+                <module>legume-service</module>
+                <module>hero-service</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>all</id>
+            <modules>
+                <module>camel-support</module>
+                <module>legume-service</module>
+                <module>hero-service</module>
+                <module>r-service</module>
+            </modules>
+        </profile>
+
         <profile>
             <id>native</id>
             <build>
