@@ -81,7 +81,7 @@ Then you run both `legume-service` and `hero-service` by going to each module fo
 ```bash
 java -jar target/legume-service-1.0-SNAPSHOT-runner.jar
 
-java -jar target/hero-service-1.0-SNAPSHOT-runner.jar
+java -Dquarkus.http.port=8081 -jar target/hero-service-1.0-SNAPSHOT-runner.jar
 ```
 
 ## Test the Applications
@@ -110,9 +110,9 @@ mvn package -Pnative
 This is going to generate a binary executable. Run with:
 
 ```bash
-./target/legume-service-1.0-SNAPSHOT-runner.jar
+./target/legume-service-1.0-SNAPSHOT-runner
 
-./target/hero-service-1.0-SNAPSHOT-runner.jar
+./target/hero-service-1.0-SNAPSHOT-runner -Dquarkus.http.port=8081
 ```
 
 ## Polyglot Java - R Service
