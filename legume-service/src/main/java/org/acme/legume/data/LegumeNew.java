@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @RegisterForReflection
 @Data
 @NoArgsConstructor
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LegumeNew {
 
+    @NotBlank
     private String name;
 
     private String description;

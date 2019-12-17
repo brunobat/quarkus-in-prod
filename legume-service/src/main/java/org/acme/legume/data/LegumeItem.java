@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @RegisterForReflection
 @Data
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class LegumeItem {
 
     private String id;
 
+    @NotBlank
     private String name;
 
     private String description;

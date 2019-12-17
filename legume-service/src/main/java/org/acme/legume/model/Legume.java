@@ -1,6 +1,5 @@
 package org.acme.legume.model;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,17 +7,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
-@RegisterForReflection
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"name"})
+@EqualsAndHashCode(of = {"id"})
 @Builder
 public class Legume {
 
@@ -27,9 +26,11 @@ public class Legume {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
-    @NotEmpty
+    @NotBlank
+    @Column(nullable = false)
     private String name;
 
+    @Column(length = 2000)
     private String description;
 
 }

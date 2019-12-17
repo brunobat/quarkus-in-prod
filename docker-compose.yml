@@ -13,14 +13,10 @@ services:
     # username:admin password: portainer
 
   rabbitmq:
-    image: rabbitmq-docker:latest
-#    build:
-#      context: rabbitmq
+    image: rabbitmq-docker
+    build:
+      context: rabbitmq
     restart: always
-#    environment:
-#      - RABBITMQ_DEFAULT_USER=rabbitmq
-#      - RABBITMQ_DEFAULT_PASS=rabbitmq
-#      - RABBITMQ_DEFAULT_VHOST=/
     ports:
       - 5672:5672
       - 15672:15672
@@ -28,7 +24,7 @@ services:
       - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
 
   database:
-    image: postgres:latest
+    image: postgres:11.2-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
     restart: always

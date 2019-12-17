@@ -41,17 +41,22 @@ docker run --network=host -i --rm -p 8080:8080 tdx/quarkus-in-prod
 
 #### Useful demo commands:
 
-Add Fruit:
+Init DB with some Legumes:
 ```shell script
-curl -v -XPOST http://localhost:8080/fruits -H 'Content-Type: application/json' -d '{"description":"Tropical fruit","name":"banana"}'
+curl -v  -X POST http://localhost:8079/legumes/init
 ```
-List Fruits:
+
+Add a Legume:
 ```shell script
-curl -v http://localhost:8080/fruits
+curl -v  -H  "accept: application/json" -H  "Content-Type: application/json"  -d '{"description":"Summer squash","name":"Zucchini"}' -X POST http://localhost:8079/legumes 
 ```
-Fail add fruit:
+List Legumes:
 ```shell script
- curl -v -XPOST http://localhost:8080/fruits -H 'Content-Type: application/json' -d '{"description":"Tropical fruit","name":""}'
+curl -v http://localhost:8079/legumes
+```
+Fail add Legume:
+```shell script
+ curl -v -X POST http://localhost:8080/fruits  -H  "accept: application/json" -H  "Content-Type: application/json"  -d '{"description":"Tropical Legume","name":""}'
 ```
 
 ## Relevant Used Technologies
