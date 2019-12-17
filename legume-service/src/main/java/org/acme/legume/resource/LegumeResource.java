@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
@@ -72,11 +73,11 @@ public class LegumeResource implements LegumeApi {
      *
      * @return a list of alternative legumes.
      */
-    public List<LegumeItem> fallback() {
-        return asList(LegumeItem.builder()
-                .name("Failed Legume")
-                .description("Fallback answer due to timeout")
-                .build());
+    public List<Legume> fallback() {
+        return singletonList(Legume.builder()
+                                   .name("Failed Legume")
+                                   .description("Fallback answer due to timeout")
+                                   .build());
     }
 
     private Optional<Legume> find(final String legumeId) {

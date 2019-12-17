@@ -1,6 +1,5 @@
 package org.acme.legume.data;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-@RegisterForReflection
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
