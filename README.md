@@ -12,6 +12,8 @@ adopted [Quarkus](https://quarkus.io) to develop applications.
 * [GraalVM 19.1.1](https://github.com/oracle/graal/releases)
 * [Maven 3.6.2](https://maven.apache.org/download.cgi)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
+* [Docker-compose](https://docs.docker.com/compose/install/)
+
 
 ## Project Contents
 
