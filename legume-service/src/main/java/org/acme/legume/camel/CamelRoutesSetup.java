@@ -77,7 +77,7 @@ public class CamelRoutesSetup {
                         .routeId("MessageProducer")
                         .log("send message")
                         .to(toUri)
-                        .autoStartup(false);
+                        .autoStartup(autoStartRoutes());
             }
         };
         camelContext.addRoutes(routeBuilder);
