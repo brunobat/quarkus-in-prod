@@ -9,7 +9,7 @@ adopted [Quarkus](https://quarkus.io) to develop applications.
 ## Pre Requisites
 
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [GraalVM 19.1.1](https://github.com/oracle/graal/releases)
+* [GraalVM 19.3.1](https://github.com/oracle/graal/releases)
 * [Maven 3.6.2](https://maven.apache.org/download.cgi)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
