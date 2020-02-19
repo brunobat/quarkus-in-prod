@@ -29,7 +29,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public interface LegumeApi {
 
     @POST
-    @Path("/init")
+    @Path("/start")
     @Operation(
             operationId = "ProvisionLegumes",
             summary = "Add default legumes to the Database"

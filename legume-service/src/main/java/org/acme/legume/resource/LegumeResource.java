@@ -65,6 +65,7 @@ public class LegumeResource implements LegumeApi {
     @Fallback(fallbackMethod = "fallback")
     @Timeout(500)
     public List<Legume> list() {
+
         return manager.createQuery("SELECT l FROM Legume l").getResultList();
     }
 
