@@ -23,7 +23,7 @@ interested in the event to subscribe and consume it to perform additional action
 
 The Hero Service consumes the event published by the Legume Service and transform the Legume into a Super Hero Legume.
 
-Both Legume and Hero Service store the data into a Posgres database.
+Both Legume and Hero Service store the data into a Postgres database.
 
 A separate R Service also exists in the project structure. This service showcases the Polyglot capabilities of GraalVM 
 by mixing Java and R code in the same project. The R Service exposes a Calculator with the most common operations, with 
